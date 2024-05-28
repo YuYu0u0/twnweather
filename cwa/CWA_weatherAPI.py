@@ -44,6 +44,9 @@ class WeatherAPI:
     def get_typhoon_warning(self):
         return self._get_weather_data("W-C0034-005")
 
+    def get_instant_weather_data(self):
+        return self._get_weather_data("O-A0003-001")
+
     def save_data(self, data, category):
         date = datetime.now().strftime("%y_%m_%d")
         filename = f"{date}_{category}.json"
@@ -60,5 +63,6 @@ if __name__ == "__main__":
     data2 = weatherAPI.get_36hr_weather_forecast_data("台北市")
     data3 = weatherAPI.get_typhoon_warning()
     data4 = weatherAPI.get_weather_warning()
+    data5 = weatherAPI.get_instant_weather_data()
     weatherAPI.save_data(data2, category[1])
-    print(data4)
+    print(data5)
