@@ -4,7 +4,8 @@ body {
   background-color: #f0f8ff;
 }
 
-.header, .footer {
+.header,
+.footer {
   width: 100%;
   color: white;
   position: fixed;
@@ -43,13 +44,15 @@ body {
   gap: 1rem;
 }
 
-.header__nav-link, .sidebar__link {
+.header__nav-link,
+.sidebar__link {
   color: white;
   text-decoration: none;
   padding: 0.5rem 1rem;
 }
 
-.header__nav-link:hover, .sidebar__link:hover {
+.header__nav-link:hover,
+.sidebar__link:hover {
   background-color: #4169e1;
 }
 
@@ -79,11 +82,14 @@ body {
   padding: 50px 30px 80px;
 }
 
-.main-content__title, .main-content__text, .main-content__social {
+.main-content__title,
+.main-content__text,
+.main-content__social {
   margin-bottom: 20px;
 }
 
-.section__title, .main-content__text {
+.section__title,
+.main-content__text {
   font-family: "Philosopher";
 }
 
@@ -98,7 +104,7 @@ body {
   font-size: 60px;
 }
 
-.main-content__title > span {
+.main-content__title>span {
   color: #778899;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
@@ -108,7 +114,8 @@ body {
 }
 
 .link-button {
-  display: inline-block; /* 改為 inline-block 確保按鈕與文本不同 */
+  display: inline-block;
+  /* 改為 inline-block 確保按鈕與文本不同 */
   width: 120px;
   background-color: #000;
   border-radius: 3px;
@@ -120,7 +127,8 @@ body {
 }
 
 .main-content__link-button {
-  display: block; /* 改為 block 確保按鈕獨佔一行 */
+  display: block;
+  /* 改為 block 確保按鈕獨佔一行 */
   margin-bottom: 40px;
 }
 
@@ -128,7 +136,7 @@ body {
   background-color: #778899;
 }
 
-.social_link{
+.social_link {
   border-radius: 20%;
   width: 50px;
 }
