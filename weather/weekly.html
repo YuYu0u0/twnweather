@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <meta name="description" content="台灣氣象預報網，提供最新的天氣預報，包括現在天氣、一周預報和地震資訊。">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <!-- Header -->
     <header class="header">
@@ -35,7 +37,17 @@
 
     <!-- Main Content -->
     <main class="main-content">
+        <div class="main-content__wrapper">
+            <form action="post">
+                <label for="city">請輸入縣市:</label>
+                <select name="city" id="city">
+                    <option value="Taipei">台北市</option>
+                    <option value="Taichung">台中市</option>
+                    <option value="Kaoshung">高雄市</option>
+                </select>
+            </form>
 
+        </div>
     </main>
     <!-- Main Content End -->
 
@@ -45,4 +57,5 @@
     </footer>
     <!-- Footer End -->
 </body>
+
 </html>
