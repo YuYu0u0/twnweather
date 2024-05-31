@@ -7,6 +7,7 @@
     <title>台灣氣象預報網</title>
     <meta name="description" content="台灣氣象預報網，提供最新的天氣預報，包括現在天氣、一周預報和地震資訊。">
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -17,10 +18,16 @@
                 <a class="header__logo-link" href="index.html">Logo</a>
             </div>
             <nav class="header__nav">
-                <a class="header__nav-link" href="index.html">首頁</a>
-                <a class="header__nav-link" href="#about">關於</a>
-                <a class="header__nav-link" href="#services">服務</a>
-                <a class="header__nav-link" href="#member">用戶</a>
+                <li class="nav-item"><a class="header__nav-link" href="index.html">首頁</a></li>
+                <li class="nav-item"><a class="header__nav-link" href="#about">關於</a></li>
+                <li class="nav-item"><a class="header__nav-link" href="#" id="services-link" role="button">服務</a>
+                    <ul class="dropdown">
+                        <li><a href="now.html">現在天氣</a></li>
+                        <li><a href="weekly.html">一周預報</a></li>
+                        <li><a href="earthquake.html">地震</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="header__nav-link" href="#member">用戶</a></li>
             </nav>
         </div>
     </header>
@@ -41,7 +48,7 @@
             <h2 class="main-content__title section__title">Welcome<br><span>Taiwan Weather Forecast</span><br></h2>
             <p class="main-content__text">This is a demo website<br>
                 A work using data from Open Weather Data</p>
-            <a href="now.html" class="main-content__link-button link-button">Have A Look</a>
+            <a href="now.html" class="main-content__link-button link-button">Today's Weather</a>
             <div class="main-content__social">
                 <a href="https://github.com/YuYu0u0/twnweather"><img class="social_link" src="images/github.png"
                         alt="GitHub"></a>
@@ -56,6 +63,7 @@
         <p>&copy; 2024 台灣氣象預報網. All Rights Reserved.</p>
     </footer>
     <!-- Footer End -->
+    <script src="script.js"></script>
 </body>
 
 </html>

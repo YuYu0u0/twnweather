@@ -17,10 +17,16 @@
                 <a class="header__logo-link" href="index.html">Logo</a>
             </div>
             <nav class="header__nav">
-                <a class="header__nav-link" href="index.html">首頁</a>
-                <a class="header__nav-link" href="#about">關於</a>
-                <a class="header__nav-link" href="#services">服務</a>
-                <a class="header__nav-link" href="#member">用戶</a>
+                <li class="nav-item"><a class="header__nav-link" href="index.html">首頁</a></li>
+                <li class="nav-item"><a class="header__nav-link" href="#about">關於</a></li>
+                <li class="nav-item"><a class="header__nav-link" href="#" id="services-link" role="button">服務</a>
+                    <ul class="dropdown">
+                        <li><a href="now.html">現在天氣</a></li>
+                        <li><a href="weekly.html">一周預報</a></li>
+                        <li><a href="earthquake.html">地震</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="header__nav-link" href="#member">用戶</a></li>
             </nav>
         </div>
     </header>
@@ -70,6 +76,7 @@
         <p>&copy; 2024 台灣氣象預報網. All Rights Reserved.</p>
     </footer>
     <!-- Footer End -->
+    <script src="script.js"></script>
 </body>
 
 </html>
