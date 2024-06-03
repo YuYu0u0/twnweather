@@ -8,6 +8,10 @@ load_dotenv()
 
 
 class WeatherAPI:
+    """
+    連接中央氣象署開放資料
+    取得json格式資料
+    """
     def __init__(self, apikey: str) -> None:
         self.api_key = apikey
         self.base_url = 'https://opendata.cwa.gov.tw/api/v1/rest/datastore/'
