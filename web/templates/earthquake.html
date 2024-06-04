@@ -43,39 +43,34 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <form action="post">
-            <label for="city">請輸入縣市:</label>
-            <select name="city" id="city">
-                <option value="taipei">台北市</option>
-                <option value="new-taipei">新北市</option>
-                <option value="taoyuan">桃園市</option>
-                <option value="hsinchu">新竹縣</option>
-                <option value="hsinchu-city">新竹市</option>
-                <option value="miaoli">苗栗縣</option>
-                <option value="taichung">台中市</option>
-                <option value="changhua">彰化縣</option>
-                <option value="yunlin">雲林縣</option>
-                <option value="chia-yi">嘉義縣</option>
-                <option value="chia-yi-city">嘉義市</option>
-                <option value="tainan">台南市</option>
-                <option value="kaohsiung">高雄市</option>
-                <option value="pingtung">屏東縣</option>
-                <option value="keelung">基隆市</option>
-                <option value="nantou">南投縣</option>
-                <option value="yilan">宜蘭縣</option>
-                <option value="hualien">花蓮縣</option>
-                <option value="taitung">台東縣</option>
-                <option value="penghu">澎湖縣</option>
-                <option value="kinmen">金門縣</option>
-                <option value="lienchiang">連江縣</option>
-            </select>
-        </form>
-        <button type="button" onclick="displaySelectedCity()">顯示選擇</button>
-        <div class="main-content__wrapper">
-            <div id="form_result">
-                
+        <section class="weather-today">
+            <h1>台灣近期地震</h1>
+            <div class="weather-today__info">
+                <table class="weather_table">
+                    <tr>
+                        <th>地震編號</th>
+                        <th>時間</th>
+                        <th>芮氏規模</th>
+                        <th>震央</th>
+                        <th>深度</th>
+                    </tr>
+                    <tr>
+                        <td>001</td>
+                        <td>2024/05/01 18:05</td>
+                        <td>5.5</td>
+                        <td>花蓮市政府東南方25km</td>
+                        <td>12.5km</td>
+                    </tr>
+                    <tr>
+                        <td>001</td>
+                        <td>2024/05/01 17:03</td>
+                        <td>4.5</td>
+                        <td>花蓮市政府東南方23.8km</td>
+                        <td>20.5km</td>
+                    </tr>
+                </table>
             </div>
-        </div>
+        </section>
     </main>
     <!-- Main Content End -->
 

@@ -13,6 +13,8 @@ class WeatherAPI:
     取得json格式資料
     """
     def __init__(self, apikey: str) -> None:
+        from dotenv import load_dotenv
+        load_dotenv()
         self.api_key = apikey
         self.base_url = 'https://opendata.cwa.gov.tw/api/v1/rest/datastore/'
 

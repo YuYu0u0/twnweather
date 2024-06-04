@@ -7,6 +7,7 @@
     <title>台灣氣象預報網</title>
     <meta name="description" content="台灣氣象預報網，提供最新的天氣預報，包括現在天氣、一周預報和地震資訊。">
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -43,37 +44,15 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <form action="post">
-            <label for="city">請輸入縣市:</label>
-            <select name="city" id="city">
-                <option value="taipei">台北市</option>
-                <option value="new-taipei">新北市</option>
-                <option value="taoyuan">桃園市</option>
-                <option value="hsinchu">新竹縣</option>
-                <option value="hsinchu-city">新竹市</option>
-                <option value="miaoli">苗栗縣</option>
-                <option value="taichung">台中市</option>
-                <option value="changhua">彰化縣</option>
-                <option value="yunlin">雲林縣</option>
-                <option value="chia-yi">嘉義縣</option>
-                <option value="chia-yi-city">嘉義市</option>
-                <option value="tainan">台南市</option>
-                <option value="kaohsiung">高雄市</option>
-                <option value="pingtung">屏東縣</option>
-                <option value="keelung">基隆市</option>
-                <option value="nantou">南投縣</option>
-                <option value="yilan">宜蘭縣</option>
-                <option value="hualien">花蓮縣</option>
-                <option value="taitung">台東縣</option>
-                <option value="penghu">澎湖縣</option>
-                <option value="kinmen">金門縣</option>
-                <option value="lienchiang">連江縣</option>
-            </select>
-        </form>
-        <button type="button" onclick="displaySelectedCity()">顯示選擇</button>
         <div class="main-content__wrapper">
-            <div id="form_result">
-                
+            <h2 class="main-content__title section__title">Welcome<br><span>Taiwan Weather Forecast</span><br></h2>
+            <p class="main-content__text">This is a demo website<br>
+                A work using data from Open Weather Data</p>
+            <a href="now.html" class="main-content__link-button link-button">Today's Weather</a>
+            <div class="main-content__social">
+                <a href="https://github.com/YuYu0u0/twnweather"><img class="social_link" src="images/github.png"
+                        alt="GitHub"></a>
+
             </div>
         </div>
     </main>
