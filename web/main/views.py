@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 from cwa.CWA_weatherAPI import WeatherAPI
@@ -8,11 +9,12 @@ import os
 load_dotenv()
 api_key = os.getenv("api_key")
 
-
+@csrf_exempt
 def weekly_report(request):
-    weather_api = WeatherAPI(api_key)
-    location = request.GET.get('location', 'Taipei')
-    print(location)
-    data = weather_api.get_weekly_forcast_weather_data(location)
-
-    return render(request,'weekly.html',data)
+    if request.method == 'POST':
+        city = request.POST.get('city')
+        weather_api = WeatherAPI(api_key)
+        data = weather_api.get_weekly_forcast_weather_data(city)
+        data = data["records"]
+        return render(request, 'weekly.html', {'data': data})
+    return render(request, 'weekly.html')
