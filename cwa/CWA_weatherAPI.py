@@ -71,5 +71,41 @@ if __name__ == "__main__":
     # data4 = weatherAPI.get_weather_warning()
     # data5 = weatherAPI.get_instant_weather_data()
     # weatherAPI.save_data(data2, category[1])
+    
     data = weatherAPI.get_weekly_forcast_weather_data("台北市")
-    print(data["records"]["locations"][0]["location"][0]["weatherElement"])
+    weatherAPI.save_data(data, category[2])
+
+    weatherdatas = data["records"]["locations"][0]["location"][0]["weatherElement"]
+
+    PoP12h = weatherdatas[0]["time"]
+    Wx = weatherdatas[6]["time"]
+    minT = weatherdatas[8]["time"]
+    maxT = weatherdatas[12]["time"]
+    
+    
+
+    from collections import defaultdict
+
+    grouped_data = defaultdict(lambda: {'minT': [],'maxT':[], 'weather': [], 'PoP12h': []})
+
+    for entry in minT:
+        start_time = entry['startTime']
+        grouped_data[start_time]['minT'].append(entry['elementValue'])
+
+    for entry in maxT:
+        start_time = entry['startTime']
+        grouped_data[start_time]['maxT'].append(entry['elementValue'])
+
+    for entry in Wx:
+        start_time = entry['startTime']
+        grouped_data[start_time]['weather'].append(entry['elementValue'])
+    
+    for entry in PoP12h:
+        start_time = entry['startTime']
+        grouped_data[start_time]['PoP12h'].append(entry['elementValue'])
+
+    # 將 defaultdict 轉換為字典
+    grouped_data = dict(grouped_data)
+
+    # 顯示整理後的資料
+    print(json.dumps(grouped_data, indent=4, ensure_ascii=False))
