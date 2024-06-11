@@ -15,14 +15,14 @@
     <header class="header">
         <div class="header__container">
             <div class="header__logo">
-                <a class="header__logo-link" href="index.html">Logo</a>
+                <a class="header__logo-link" href="{% url 'index' %}">Logo</a>
             </div>
             <nav class="header__nav">
-                <li class="nav-item"><a class="header__nav-link" href="index.html">首頁</a></li>
+                <li class="nav-item"><a class="header__nav-link" href="{% url 'index' %}">首頁</a></li>
                 <li class="nav-item"><a class="header__nav-link" href="#about">關於</a></li>
                 <li class="nav-item"><a class="header__nav-link" href="#" id="services-link" role="button">服務</a>
                     <ul class="dropdown">
-                        <li><a href="now.html">現在天氣</a></li>
+                        <li><a href="{% url 'current_weather' %}">現在天氣</a></li>
                         <li><a href="{% url 'weekly_report' %}">一周預報</a></li>
                         <li><a href="earthquake.html">地震</a></li>
                     </ul>
@@ -35,8 +35,8 @@
 
     <!-- Sidebar -->
     <aside class="sidebar">
-        <a class="sidebar__link" href="index.html">首頁</a>
-        <a class="sidebar__link" href="now.html">現在天氣</a>
+        <a class="sidebar__link" href="{% url 'index' %}">首頁</a>
+        <a class="sidebar__link" href="{% url 'current_weather' %}">現在天氣</a>
         <a class="sidebar__link" href="{% url 'weekly_report' %}">一周預報</a>
         <a class="sidebar__link" href="earthquake.html">地震</a>
     </aside>
@@ -74,8 +74,8 @@
         </form>
         
         <div class="main-content__wrapper">
-            <h2>{{city}}一周天氣預報</h2>
             {% if data %}
+            <h2>{{city}}一周天氣預報</h2>
             <table>
                 <thead>
                     <tr>
@@ -107,6 +107,8 @@
                     {% endfor %}
                 </tbody>
             </table>
+            {% else %}
+            <h2>請選擇縣市</h2>
             {% endif %}
         </div>
     </main>
