@@ -3,9 +3,12 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
-from cwa.CWA_weatherAPI import WeatherAPI
+from datetime import datetime
+from collections import defaultdict
 from dotenv import load_dotenv
 import os
+
+from cwa.CWA_weatherAPI import WeatherAPI
 load_dotenv()
 api_key = os.getenv("api_key")
 
@@ -24,11 +27,6 @@ def weekly_report(request):
         Wx = weatherdatas[6]["time"]
         minT = weatherdatas[8]["time"]
         maxT = weatherdatas[12]["time"]
-        
-        
-
-        from collections import defaultdict
-        from datetime import datetime
 
         def get_period(time):
             hour = datetime.fromisoformat(time).hour
@@ -103,7 +101,7 @@ def current_weather(request):
 
 
 def recent_earthquake(request):
-    from datetime import datetime
+    
     weatherAPI = WeatherAPI(api_key)
     data = weatherAPI.get_earthquake_data()
     reports = data["records"]["Earthquake"]
