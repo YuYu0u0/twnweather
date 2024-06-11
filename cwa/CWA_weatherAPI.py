@@ -64,74 +64,12 @@ if __name__ == "__main__":
     category = ["earthquake_report","36hr_weather_forcast", "weekly_weather_forcast","current_weather"]
     api_key = os.getenv("api_key")
     weatherAPI = WeatherAPI(api_key)
-    # data = weatherAPI.get_earthquake_data()
-    # data2 = weatherAPI.get_36hr_weather_forecast_data("台北市")
-    # data3 = weatherAPI.get_typhoon_warning()
-    # data4 = weatherAPI.get_weather_warning()
-    data5 = weatherAPI.get_instant_weather_data()
-    # weatherAPI.save_data(data2, category[1])
-    # #-----------------------------------------------------------------------------
-    # data = weatherAPI.get_weekly_forcast_weather_data("台北市")
-    # weatherAPI.save_data(data, category[2])
-
-    # weatherdatas = data["records"]["locations"][0]["location"][0]["weatherElement"]
-
-    # PoP12h = weatherdatas[0]["time"]
-    # Wx = weatherdatas[6]["time"]
-    # minT = weatherdatas[8]["time"]
-    # maxT = weatherdatas[12]["time"]
-    
-    
-
-    # from collections import defaultdict
-
-    # grouped_data = defaultdict(lambda: {'minT': [],'maxT':[], 'weather': [], 'PoP12h': []})
-
-    # for entry in minT:
-    #     start_time = entry['startTime']
-    #     grouped_data[start_time]['minT'].append(entry['elementValue'])
-
-    # for entry in maxT:
-    #     start_time = entry['startTime']
-    #     grouped_data[start_time]['maxT'].append(entry['elementValue'])
-
-    # for entry in Wx:
-    #     start_time = entry['startTime']
-    #     grouped_data[start_time]['weather'].append(entry['elementValue'])
-    
-    # for entry in PoP12h:
-    #     start_time = entry['startTime']
-    #     grouped_data[start_time]['PoP12h'].append(entry['elementValue'])
-
-    # # 將 defaultdict 轉換為字典
-    # grouped_data = dict(grouped_data)
-
-    # # 顯示整理後的資料
-    # print(json.dumps(grouped_data, indent=4, ensure_ascii=False))
-    # #-----------------------------------------------------------------------------
-    
-    data =  data5["records"]['Station']
-
-    current = dict()
-
-    for i,v in enumerate(data):
-        infos = list()
-        city = v['GeoInfo']['CountyName']
-        town = v['GeoInfo']['TownName']
-        weather = v["WeatherElement"]['Weather']
-        station = v['StationName']
-        temperature = v["WeatherElement"]['AirTemperature']
-        if v["WeatherElement"]['Weather'] == '-99':
-            weather = '-'
-        # 如果 city 不在 current 字典中，則初始化為一個空列表
-        if city not in current:
-            current[city] = []
-
-        # 將當前記錄添加到對應的城市列表中
-        current[city].append({
-            "town": town,
-            "station": station,
-            "weather": weather,
-            "temperature": temperature
-        })
-    print(current)
+    data = weatherAPI.get_earthquake_data()
+    reports = data["records"]["Earthquake"]
+    earthquake_info = list()
+    for report in reports:
+        report_time = report["EarthquakeInfo"]["OriginTime"]
+        location = report["EarthquakeInfo"]["Epicenter"]["Location"]
+        dept = report["EarthquakeInfo"]["FocalDepth"]
+        magnitude = report["EarthquakeInfo"]["EarthquakeMagnitude"]["MagnitudeValue"]
+        earthquake_info.append(report_time,location,dept,magnitude)

@@ -24,7 +24,7 @@
                     <ul class="dropdown">
                         <li><a href="{% url 'current_weather' %}">現在天氣</a></li>
                         <li><a href="{% url 'weekly_report' %}">一周預報</a></li>
-                        <li><a href="earthquake.html">地震</a></li>
+                        <li><a href="{% url 'recent_earthquake' %}">地震</a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a class="header__nav-link" href="#member">用戶</a></li>
@@ -38,7 +38,7 @@
         <a class="sidebar__link" href="{% url 'index' %}">首頁</a>
         <a class="sidebar__link" href="{% url 'current_weather' %}">現在天氣</a>
         <a class="sidebar__link" href="{% url 'weekly_report' %}">一周預報</a>
-        <a class="sidebar__link" href="earthquake.html">地震</a>
+        <a class="sidebar__link" href="{% url 'recent_earthquake' %}">地震</a>
     </aside>
     <!-- Sidebar End -->
 

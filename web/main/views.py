@@ -100,3 +100,19 @@ def current_weather(request):
         if city in current:
             return render(request, 'now.html',{"data":current[city],"city":city})
     return render(request, 'now.html',{"data":" "})
+
+
+def recent_earthquake(request):
+    from datetime import datetime
+    weatherAPI = WeatherAPI(api_key)
+    data = weatherAPI.get_earthquake_data()
+    reports = data["records"]["Earthquake"]
+    earthquake_info = list()
+    for report in reports:
+        report_time = datetime.strptime(report["EarthquakeInfo"]["OriginTime"], "%Y-%m-%d %H:%M:%S")
+        formatted_time = report_time.strftime("%Y-%m-%d %I:%M %p")
+        location = report["EarthquakeInfo"]["Epicenter"]["Location"]
+        dept = report["EarthquakeInfo"]["FocalDepth"]
+        magnitude = report["EarthquakeInfo"]["EarthquakeMagnitude"]["MagnitudeValue"]
+        earthquake_info.append([formatted_time,location,dept,magnitude])
+    return render(request,"earthquake.html",{"data":earthquake_info[:5]})
