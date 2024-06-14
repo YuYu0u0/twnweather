@@ -47,25 +47,25 @@
         <div class="main-content__wrapper">
             <h2>最近有感地震</h2>
             {% if data %}
-                <table>
-                    <tr>
-                        <th>時間</th>
-                        <th>地點</th>
-                        <th>深度</th>
-                        <th>地震規模</th>
-                    </tr>
-                    {% for report in data %}
-                    <tr>
-                        <td>{{ report.0 }}</td>
-                        <td>{{ report.1 }}</td>
-                        <td>{{ report.2 }}KM</td>
-                        <td>{{ report.3 }}</td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            
+            <table>
+                <tr>
+                    <th>時間</th>
+                    <th>地點</th>
+                    <th>深度</th>
+                    <th>地震規模</th>
+                </tr>
+                {% for report in data %}
+                <tr>
+                    <td>{{ report.0 }}</td>
+                    <td>{{ report.1 }}</td>
+                    <td>{{ report.2 }}KM</td>
+                    <td>{{ report.3 }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
             {% else %}
-                <h2>沒有資料</h2>
+            <h2>沒有資料</h2>
             {% endif %}
         </div>
     </main>

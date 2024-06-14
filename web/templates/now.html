@@ -72,31 +72,31 @@
             </select>
             <button type="submit">顯示選擇</button>
         </form>
-        
+
         <div class="main-content__wrapper">
             {%if data == " "%}
-                <h2>請選擇縣市</h2>
+            <h2>請選擇縣市</h2>
             {% elif data %}
-                <h2>{{ city }}天氣狀況</h2>
-                <table>
-                    <tr>
-                        <th>鄉鎮市區</th>
-                        <th>測站名稱</th>
-                        <th>天氣狀況</th>
-                        <th>溫度 (°C)</th>
-                    </tr>
-                    {% for weather_data in data %}
-                    <tr>
-                        <td>{{ weather_data.town }}</td>
-                        <td>{{ weather_data.station }}</td>
-                        <td>{{ weather_data.weather }}</td>
-                        <td>{{ weather_data.temperature }}</td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            
+            <h2>{{ city }}天氣狀況</h2>
+            <table>
+                <tr>
+                    <th>鄉鎮市區</th>
+                    <th>測站名稱</th>
+                    <th>天氣狀況</th>
+                    <th>溫度 (°C)</th>
+                </tr>
+                {% for weather_data in data %}
+                <tr>
+                    <td>{{ weather_data.town }}</td>
+                    <td>{{ weather_data.station }}</td>
+                    <td>{{ weather_data.weather }}</td>
+                    <td>{{ weather_data.temperature }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
             {% else %}
-                <h2>沒有資料</h2>
+            <h2>沒有資料</h2>
             {% endif %}
         </div>
     </main>

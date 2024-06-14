@@ -112,41 +112,20 @@ li.nav-item {
   padding: 50px 30px 80px;
 }
 
-.main-content__title,
-.main-content__text,
-.main-content__social {
-  margin-bottom: 20px;
-}
 
-.section__title,
-.main-content__text {
-  font-family: "Philosopher";
-}
 
-.section__title {
-  font-weight: bold;
-  color: #000;
-  letter-spacing: 2px;
-  line-height: 1.2;
-}
+
+
+
 
 .main-content__title {
   font-size: 60px;
 }
 
-.main-content__title>span {
-  color: #778899;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-}
-
-.main-content__text {
-  margin-bottom: 25px;
-}
-
 .link-button {
   display: inline-block;
   /* 改為 inline-block 確保按鈕與文本不同 */
-  width: 150px;
+  width: 80px;
   background-color: #000;
   border-radius: 3px;
   padding: 10px 20px;

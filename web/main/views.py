@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 
@@ -12,8 +12,10 @@ from cwa.CWA_weatherAPI import WeatherAPI
 load_dotenv()
 api_key = os.getenv("api_key")
 
+
 def index(request):
-    return redirect("current_weather")
+    return render(request, "index.html")
+
 
 @csrf_exempt
 def weekly_report(request):
@@ -32,7 +34,8 @@ def weekly_report(request):
             hour = datetime.fromisoformat(time).hour
             return 'night' if hour == 18 else 'day'
 
-        grouped_data = defaultdict(lambda: {'day': {'minT': '', 'maxT': '', 'weather': '', 'PoP12h': ''}, 'night': {'minT': '', 'maxT': '', 'weather': '', 'PoP12h': ''}})
+        grouped_data = defaultdict(lambda: {'day': {'minT': '', 'maxT': '', 'weather': '', 'PoP12h': ''}, 'night': {
+                                   'minT': '', 'maxT': '', 'weather': '', 'PoP12h': ''}})
 
         for entry in minT:
             start_time = entry['startTime']
@@ -60,7 +63,7 @@ def weekly_report(request):
 
         # 將 defaultdict 轉換為字典
         grouped_data = dict(grouped_data)
-        return render(request, 'weekly.html', {'data': grouped_data,"city":city} )
+        return render(request, 'weekly.html', {'data': grouped_data, "city": city})
     return render(request, 'weekly.html')
 
 
@@ -68,7 +71,7 @@ def weekly_report(request):
 def current_weather(request):
     weather_api = WeatherAPI(api_key)
     data = weather_api.get_instant_weather_data()
-    data =  data["records"]['Station']
+    data = data["records"]['Station']
 
     current = dict()
     for v in data:
@@ -96,21 +99,22 @@ def current_weather(request):
         if "台" in city:
             city = city.replace("台", "臺")
         if city in current:
-            return render(request, 'now.html',{"data":current[city],"city":city})
-    return render(request, 'now.html',{"data":" "})
+            return render(request, 'now.html', {"data": current[city], "city": city})
+    return render(request, 'now.html', {"data": " "})
 
 
 def recent_earthquake(request):
-    
+
     weatherAPI = WeatherAPI(api_key)
     data = weatherAPI.get_earthquake_data()
     reports = data["records"]["Earthquake"]
     earthquake_info = list()
     for report in reports:
-        report_time = datetime.strptime(report["EarthquakeInfo"]["OriginTime"], "%Y-%m-%d %H:%M:%S")
+        report_time = datetime.strptime(
+            report["EarthquakeInfo"]["OriginTime"], "%Y-%m-%d %H:%M:%S")
         formatted_time = report_time.strftime("%Y-%m-%d %I:%M %p")
         location = report["EarthquakeInfo"]["Epicenter"]["Location"]
         dept = report["EarthquakeInfo"]["FocalDepth"]
         magnitude = report["EarthquakeInfo"]["EarthquakeMagnitude"]["MagnitudeValue"]
-        earthquake_info.append([formatted_time,location,dept,magnitude])
-    return render(request,"earthquake.html",{"data":earthquake_info[:5]})
+        earthquake_info.append([formatted_time, location, dept, magnitude])
+    return render(request, "earthquake.html", {"data": earthquake_info[:5]})

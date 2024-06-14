@@ -72,7 +72,7 @@
             </select>
             <button type="submit">顯示選擇</button>
         </form>
-        
+
         <div class="main-content__wrapper">
             {% if data %}
             <h2>{{city}}一周天氣預報</h2>
@@ -89,21 +89,21 @@
                 </thead>
                 <tbody>
                     {% for date, periods in data.items %}
-                        <tr>
-                            <td rowspan="2">{{ date }}</td>
-                            <td>日</td>
-                            <td>{{ periods.day.minT }}</td>
-                            <td>{{ periods.day.maxT }}</td>
-                            <td>{{ periods.day.weather }}</td>
-                            <td>{{ periods.day.PoP12h }}</td>
-                        </tr>
-                        <tr>
-                            <td>夜</td>
-                            <td>{{ periods.night.minT }}</td>
-                            <td>{{ periods.night.maxT }}</td>
-                            <td>{{ periods.night.weather }}</td>
-                            <td>{{ periods.night.PoP12h }}</td>
-                        </tr>
+                    <tr>
+                        <td rowspan="2">{{ date }}</td>
+                        <td>日</td>
+                        <td>{{ periods.day.minT }}</td>
+                        <td>{{ periods.day.maxT }}</td>
+                        <td>{{ periods.day.weather }}</td>
+                        <td>{{ periods.day.PoP12h }}</td>
+                    </tr>
+                    <tr>
+                        <td>夜</td>
+                        <td>{{ periods.night.minT }}</td>
+                        <td>{{ periods.night.maxT }}</td>
+                        <td>{{ periods.night.weather }}</td>
+                        <td>{{ periods.night.PoP12h }}</td>
+                    </tr>
                     {% endfor %}
                 </tbody>
             </table>
