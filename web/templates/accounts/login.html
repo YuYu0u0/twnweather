@@ -19,7 +19,6 @@
             </div>
             <nav class="header__nav">
                 <li class="nav-item"><a class="header__nav-link" href="{% url 'index' %}">首頁</a></li>
-                <li class="nav-item"><a class="header__nav-link" href="#about">關於</a></li>
                 <li class="nav-item"><a class="header__nav-link" href="#" id="services-link" role="button">服務</a>
                     <ul class="dropdown">
                         <li><a href="{% url 'current_weather' %}">現在天氣</a></li>
@@ -45,7 +44,7 @@
     <!-- Main Content -->
     <main class="main-content">
         <div class="main-content__wrapper">
-            <form action="{% url 'login' %}" method="post">
+            <form action="{% url 'user_login' %}" method="post">
                 {% csrf_token %}
                 <label for="username">帳號:</label>
                 <input type="text" id="username" name="username"><br><br>

@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login
+from .forms import LoginForm
 
 
 def register(request):
@@ -19,15 +20,16 @@ def register(request):
 
 def user_login(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
+        MyLoginForm = LoginForm(request.POST)
+        if MyLoginForm.is_valid():
+            username = MyLoginForm.cleaned_data.get('username')
+            password = MyLoginForm.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
                 # Redirect to the home page or any other page after login
-                return redirect('home')
+                return redirect('current_weather')
     else:
-        form = AuthenticationForm()
-    return render(request, 'accounts/login.html', {'form': form})
+        MyLoginForm = LoginForm()
+        return render(request, 'accounts/login.html', {'form': MyLoginForm})
+    return render(request, 'accounts/login.html')
