@@ -12,7 +12,7 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return redirect('user_login')
     else:
         form = UserCreationForm()
     return render(request, 'accounts/register.html', {'form': form})
@@ -31,5 +31,4 @@ def user_login(request):
                 return redirect('current_weather')
     else:
         MyLoginForm = LoginForm()
-        return render(request, 'accounts/login.html', {'form': MyLoginForm})
-    return render(request, 'accounts/login.html')
+    return render(request, 'accounts/login.html', {'form': MyLoginForm})

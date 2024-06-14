@@ -26,7 +26,12 @@
                         <li><a href="{% url 'recent_earthquake' %}">地震</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="header__nav-link" href="#member">用戶</a></li>
+                <li class="nav-item"><a class="header__nav-link" href="#" id="services-link2" role="button">帳戶</a>
+                    <ul class="dropdown">
+                        <li><a href="{% url 'user_login' %}">登入</a></li>
+                        <li><a href="{% url 'register' %}">註冊</a></li>
+                    </ul>
+                </li>
             </nav>
         </div>
     </header>
