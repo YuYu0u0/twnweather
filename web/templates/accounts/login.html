@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="zh-TW">
 
@@ -6,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>台灣氣象預報網</title>
     <meta name="description" content="台灣氣象預報網，提供最新的天氣預報，包括現在天氣、一周預報和地震資訊。">
-    <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" type="text/css" href="{% static 'weather/style.css' %}">
 </head>
 
 <body>
@@ -15,16 +15,16 @@
     <header class="header">
         <div class="header__container">
             <div class="header__logo">
-                <a class="header__logo-link" href="index.html">Logo</a>
+                <a class="header__logo-link" href="{% url 'index' %}">Logo</a>
             </div>
             <nav class="header__nav">
-                <li class="nav-item"><a class="header__nav-link" href="index.html">首頁</a></li>
+                <li class="nav-item"><a class="header__nav-link" href="{% url 'index' %}">首頁</a></li>
                 <li class="nav-item"><a class="header__nav-link" href="#about">關於</a></li>
                 <li class="nav-item"><a class="header__nav-link" href="#" id="services-link" role="button">服務</a>
                     <ul class="dropdown">
-                        <li><a href="now.html">現在天氣</a></li>
-                        <li><a href="weekly.html">一周預報</a></li>
-                        <li><a href="earthquake.html">地震</a></li>
+                        <li><a href="{% url 'current_weather' %}">現在天氣</a></li>
+                        <li><a href="{% url 'weekly_report' %}">一周預報</a></li>
+                        <li><a href="{% url 'recent_earthquake' %}">地震</a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a class="header__nav-link" href="#member">用戶</a></li>
@@ -35,25 +35,24 @@
 
     <!-- Sidebar -->
     <aside class="sidebar">
-        <a class="sidebar__link" href="index.html">首頁</a>
-        <a class="sidebar__link" href="now.html">現在天氣</a>
-        <a class="sidebar__link" href="weekly.html">一周預報</a>
-        <a class="sidebar__link" href="earthquake.html">地震</a>
+        <a class="sidebar__link" href="{% url 'index' %}">首頁</a>
+        <a class="sidebar__link" href="{% url 'current_weather' %}">現在天氣</a>
+        <a class="sidebar__link" href="{% url 'weekly_report' %}">一周預報</a>
+        <a class="sidebar__link" href="{% url 'recent_earthquake' %}">地震</a>
     </aside>
     <!-- Sidebar End -->
 
     <!-- Main Content -->
     <main class="main-content">
         <div class="main-content__wrapper">
-            <h2 class="main-content__title section__title">Welcome<br><span>Taiwan Weather Forecast</span><br></h2>
-            <p class="main-content__text">This is a demo website<br>
-                A work using data from Open Weather Data</p>
-            <a href="now.html" class="main-content__link-button link-button">Today's Weather</a>
-            <div class="main-content__social">
-                <a href="https://github.com/YuYu0u0/twnweather"><img class="social_link" src="images/github.png"
-                        alt="GitHub"></a>
-
-            </div>
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <label for="username">帳號:</label>
+                <input type="text" id="username" name="username"><br><br>
+                <label for="password">密碼:</label>
+                <input type="password" id="password" name="password"><br><br>
+                <button type="submit">登入</button>
+            </form>
         </div>
     </main>
     <!-- Main Content End -->
@@ -63,7 +62,7 @@
         <p>&copy; 2024 台灣氣象預報網. All Rights Reserved.</p>
     </footer>
     <!-- Footer End -->
-    <script src="script.js"></script>
+    <script src="{% static 'weather/script.js' %}"></script>
 </body>
 
 </html>
