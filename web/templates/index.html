@@ -1,69 +1,15 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="zh-TW">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>台灣氣象預報網</title>
-    <meta name="description" content="台灣氣象預報網，提供最新的天氣預報，包括現在天氣、一周預報和地震資訊。">
-    <link rel="stylesheet" type="text/css" href="{% static 'weather/style.css' %}">
-</head>
-
-<body>
-    <!-- Header -->
-    <header class="header">
-        <div class="header__container">
-            <div class="header__logo">
-                <a class="header__logo-link" href="{% url 'index' %}">Logo</a>
-            </div>
-            <nav class="header__nav">
-                <li class="nav-item"><a class="header__nav-link" href="{% url 'index' %}">首頁</a></li>
-                <li class="nav-item"><a class="header__nav-link" href="#" id="services-link" role="button">服務</a>
-                    <ul class="dropdown">
-                        <li><a href="{% url 'current_weather' %}">現在天氣</a></li>
-                        <li><a href="{% url 'weekly_report' %}">一周預報</a></li>
-                        <li><a href="{% url 'recent_earthquake' %}">地震</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a class="header__nav-link" href="#" id="services-link2" role="button">帳戶</a>
-                    <ul class="dropdown">
-                        <li><a href="{% url 'user_login' %}">登入</a></li>
-                        <li><a href="{% url 'register' %}">註冊</a></li>
-                    </ul>
-                </li>
-            </nav>
-        </div>
-    </header>
-    <!-- Header End -->
-
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <a class="sidebar__link" href="{% url 'index' %}">首頁</a>
-        <a class="sidebar__link" href="{% url 'current_weather' %}">現在天氣</a>
-        <a class="sidebar__link" href="{% url 'weekly_report' %}">一周預報</a>
-        <a class="sidebar__link" href="{% url 'recent_earthquake' %}">地震</a>
-    </aside>
-    <!-- Sidebar End -->
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <h2 class="main-content__title section__title">歡迎來到<br><span>台灣氣象預報網</span><br></h2>
-        <p class="main-content__text">提供最新的天氣預報，包括現在天氣、一周預報和地震資訊。</p>
-        <a href="{% url 'current_weather' %}" class="main-content__link-button link-button">今日天氣</a>
-        <div class="main-content__social">
-            <a href="https://github.com/YuYu0u0/twnweather"><img class="social_link"
-                    src="{% static 'weather/images/github.png' %}" alt="GitHub"></a>
-        </div>
-    </main>
-    <!-- Main Content End -->
-
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2024 台灣氣象預報網. All Rights Reserved.</p>
-    </footer>
-    <!-- Footer End -->
-    <script src="{% static 'weather/script.js' %}"></script>
-</body>
-
-</html>
+{% block title %}台灣氣象預報網{% endblock %}
+{% block content %}
+<div class="main-content__wrapper">
+    <h2 class="main-content__title section__title">歡迎來到<br><span>台灣氣象預報網</span><br></h2>
+    <p class="main-content__text">提供最新的天氣預報，包括現在天氣、一周預報和地震資訊。</p>
+    <a href="{% url 'current_weather' %}" class="main-content__link-button link-button">今日天氣</a>
+    <div class="main-content__social">
+        <a href="https://github.com/YuYu0u0/twnweather">
+            <img class="social_link" src="{% static 'weather/images/github.png' %}" alt="GitHub">
+        </a>
+    </div>
+</div>
+{% endblock %}
