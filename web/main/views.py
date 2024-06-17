@@ -19,52 +19,36 @@ def index(request):
 @login_required
 @csrf_exempt
 def weekly_report(request):
-    if request.method == 'POST':
-        city = request.POST.get('city')
-        weather_api = WeatherAPI(api_key)
-        data = weather_api.get_weekly_forcast_weather_data(city)
-        weatherdatas = data["records"]["locations"][0]["location"][0]["weatherElement"]
+    def get_period(time):
+        hour = datetime.fromisoformat(time).hour
+        return 'night' if hour == 18 else 'day'
 
-        PoP12h = weatherdatas[0]["time"]
-        Wx = weatherdatas[6]["time"]
-        minT = weatherdatas[8]["time"]
-        maxT = weatherdatas[12]["time"]
+    city = request.POST.get('city') if request.method == 'POST' else request.session.get('last_city', '')
+    if not city:
+        return render(request, 'weekly.html')
 
-        def get_period(time):
-            hour = datetime.fromisoformat(time).hour
-            return 'night' if hour == 18 else 'day'
+    weather_api = WeatherAPI(api_key)
+    data = weather_api.get_weekly_forcast_weather_data(city)
+    weatherdatas = data["records"]["locations"][0]["location"][0]["weatherElement"]
 
-        grouped_data = defaultdict(lambda: {'day': {'minT': '', 'maxT': '', 'weather': '', 'PoP12h': ''}, 'night': {
-                                   'minT': '', 'maxT': '', 'weather': '', 'PoP12h': ''}})
+    PoP12h = weatherdatas[0]["time"]
+    Wx = weatherdatas[6]["time"]
+    minT = weatherdatas[8]["time"]
+    maxT = weatherdatas[12]["time"]
 
-        for entry in minT:
+    grouped_data = defaultdict(lambda: {'day': {'minT': '', 'maxT': '', 'weather': '', 'PoP12h': ''}, 'night': {
+        'minT': '', 'maxT': '', 'weather': '', 'PoP12h': ''}})
+
+    for data_type, weather_data in zip(['minT', 'maxT', 'Wx', 'PoP12h'], [minT, maxT, Wx, PoP12h]):
+        for entry in weather_data:
             start_time = entry['startTime']
             date = start_time.split(' ')[0]
             period = get_period(start_time)
-            grouped_data[date][period]['minT'] = entry['elementValue'][0]["value"]
+            grouped_data[date][period][data_type] = entry['elementValue'][0]["value"]
 
-        for entry in maxT:
-            start_time = entry['startTime']
-            date = start_time.split(' ')[0]
-            period = get_period(start_time)
-            grouped_data[date][period]['maxT'] = entry['elementValue'][0]["value"]
-
-        for entry in Wx:
-            start_time = entry['startTime']
-            date = start_time.split(' ')[0]
-            period = get_period(start_time)
-            grouped_data[date][period]['weather'] = entry['elementValue'][0]["value"]
-
-        for entry in PoP12h:
-            start_time = entry['startTime']
-            date = start_time.split(' ')[0]
-            period = get_period(start_time)
-            grouped_data[date][period]['PoP12h'] = entry['elementValue'][0]["value"]
-
-        # 將 defaultdict 轉換為字典
-        grouped_data = dict(grouped_data)
-        return render(request, 'weekly.html', {'data': grouped_data, "city": city})
-    return render(request, 'weekly.html')
+    grouped_data = dict(grouped_data)
+    request.session['last_city'] = city
+    return render(request, 'weekly.html', {'data': grouped_data, "city": city})
 
 
 @login_required
@@ -100,7 +84,13 @@ def current_weather(request):
         if "台" in city:
             city = city.replace("台", "臺")
         if city in current:
+            request.session['last_city'] = city
             return render(request, 'now.html', {"data": current[city], "city": city})
+    
+    last_city = request.session.get('last_city', '')
+    if last_city and last_city in current:
+        return render(request, 'now.html', {"data": current[last_city], "city": last_city})
+    
     return render(request, 'now.html', {"data": " "})
 
 
