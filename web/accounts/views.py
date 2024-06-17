@@ -33,6 +33,8 @@ def user_login(request):
                 login(request, user)
                 # Redirect to the home page or any other page after login
                 return redirect('current_weather')
+            else:
+                form.add_error(None, '帳號或密碼不正確')
     else:
         form = LoginForm()
     return render(request, 'accounts/login.html', {'form': form})

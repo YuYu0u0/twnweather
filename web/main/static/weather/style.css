@@ -166,3 +166,7 @@ th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+
+.errorlist{
+  color: red;
+}
