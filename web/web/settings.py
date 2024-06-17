@@ -126,3 +126,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# SESSION_ENGINE
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'

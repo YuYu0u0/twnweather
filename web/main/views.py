@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 from datetime import datetime
 from collections import defaultdict
@@ -16,7 +16,7 @@ api_key = os.getenv("api_key")
 def index(request):
     return render(request, "index.html")
 
-
+@login_required
 @csrf_exempt
 def weekly_report(request):
     if request.method == 'POST':
@@ -67,6 +67,7 @@ def weekly_report(request):
     return render(request, 'weekly.html')
 
 
+@login_required
 @csrf_exempt
 def current_weather(request):
     weather_api = WeatherAPI(api_key)
@@ -103,8 +104,8 @@ def current_weather(request):
     return render(request, 'now.html', {"data": " "})
 
 
+@login_required
 def recent_earthquake(request):
-
     weatherAPI = WeatherAPI(api_key)
     data = weatherAPI.get_earthquake_data()
     reports = data["records"]["Earthquake"]

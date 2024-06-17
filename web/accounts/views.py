@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .forms import CustomUserCreationForm,LoginForm
 
 
@@ -36,3 +36,8 @@ def user_login(request):
     else:
         form = LoginForm()
     return render(request, 'accounts/login.html', {'form': form})
+
+
+def user_logout(request):
+    logout(request)
+    return redirect('index')
