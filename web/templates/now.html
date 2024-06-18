@@ -4,7 +4,7 @@
 {% block content %}
 <form method="post" action="{% url 'current_weather' %}">
     <label for="city">請輸入縣市:</label>
-    <select name="city" id="city">
+    <select name="city" class="select" id="city">
         <option value="台北市" {% if city == '台北市' %}selected{% endif %}>台北市</option>
         <option value="新北市" {% if city == '新北市' %}selected{% endif %}>新北市</option>
         <option value="桃園市" {% if city == '桃園市' %}selected{% endif %}>桃園市</option>

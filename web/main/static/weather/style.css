@@ -170,3 +170,12 @@ tr:nth-child(even) {
 .errorlist{
   color: red;
 }
+
+.select{
+  border: 1px solid #bdb2b2;
+  border-radius: 10px;
+  outline: none;
+  width: 80px;
+  height: 40px;
+  line-height: 40px;
+}
