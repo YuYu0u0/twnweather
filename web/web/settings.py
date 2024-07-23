@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv("Django_SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = ['twnweather.onrender.com']
-
+CSRF_TRUSTED_ORIGINS = ['https://twnweather.onrender.com']
 
 # Application definition
 
