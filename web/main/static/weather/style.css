@@ -38,7 +38,10 @@ body {
   color: white;
   text-decoration: none;
 }
-
+.logo_img{
+  border-radius: 20%;
+  width: 50px;
+}
 .header__nav {
   display: flex;
   gap: 1rem;
@@ -111,12 +114,6 @@ li.nav-item {
 .main-content__wrapper {
   padding: 50px 30px 80px;
 }
-
-
-
-
-
-
 
 .main-content__title {
   font-size: 60px;
