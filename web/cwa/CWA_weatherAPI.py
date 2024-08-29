@@ -17,7 +17,7 @@ class WeatherAPI:
         self.api_key = apikey
         self.base_url = 'https://opendata.cwa.gov.tw/api/v1/rest/datastore/'
 
-    def _get_weather_data(self, dataset_id: str, location=None):
+    def _get_weather_data(self, dataset_id: str, location=None, element=None):
         if location is not None:
             if "台" in location:
                 location = location.replace("台", "臺")
@@ -25,7 +25,7 @@ class WeatherAPI:
 
             url = f"{self.base_url}{dataset_id}?Authorization={self.api_key}&format=JSON{city}"
         else:
-            url = f"{self.base_url}{dataset_id}?Authorization={self.api_key}&format=JSON"
+            url = f"{self.base_url}{dataset_id}?Authorization={self.api_key}&format=JSON{element}"
         # print(url)
         try:
             res = requests.get(url, timeout=20)
@@ -50,7 +50,33 @@ class WeatherAPI:
         return self._get_weather_data("W-C0034-005")
 
     def get_instant_weather_data(self):
-        return self._get_weather_data("O-A0003-001")
+        taiwan_cities = {
+            "基隆市": "466940",
+            "臺北市": "466920",
+            "新北市": "466881",
+            "桃園市": "467050",
+            "新竹市": "C0D660",
+            "新竹縣": "467571",
+            "苗栗縣": "467280",
+            "臺中市": "467490",
+            "彰化縣": "467270",
+            "南投縣": "467650",
+            "雲林縣": "12J990",
+            "嘉義市": "467480",
+            "嘉義縣": "467480",
+            "臺南市": "467410",
+            "高雄市": "467441",
+            "屏東縣": "467590",
+            "宜蘭縣": "467080",
+            "花蓮縣": "466990",
+            "臺東縣": "467660",
+            "澎湖縣": "467350",
+            "金門縣": "467110",
+            "連江縣": "467990"
+        }
+        station_id = ",".join(taiwan_cities.values())
+        element = f"&StationId={station_id}&WeatherElement=Weather,AirTemperature,RelativeHumidity"
+        return self._get_weather_data(dataset_id="O-A0003-001", element=element)
 
     def save_data(self, data, category):
         # Ensure the directory exists
@@ -66,11 +92,11 @@ if __name__ == "__main__":
                 "36hr_weather_forcast", "weekly_weather_forcast"]
     api_key = os.getenv("api_key")
     print(api_key)
-    # weatherAPI = WeatherAPI(api_key)
+    weatherAPI = WeatherAPI(api_key)
     # data = weatherAPI.get_earthquake_data()
     # data2 = weatherAPI.get_36hr_weather_forecast_data("台北市")
     # data3 = weatherAPI.get_typhoon_warning()
     # data4 = weatherAPI.get_weather_warning()
-    # data5 = weatherAPI.get_instant_weather_data()
+    data5 = weatherAPI.get_instant_weather_data()
     # weatherAPI.save_data(data2, category[1])
-    # print(data5)
+    print(data5)
