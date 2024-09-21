@@ -1,0 +1,143 @@
+body {
+    font-family: "Noto Sans TC", "Nunito", sans-serif;
+    background-color: #ACD6FF;
+}
+
+#mainNavbar {
+    font-size: 1.5rem;
+    font-weight: 400;
+    background: #0755a8;
+}
+
+#mainNavbar .nav-link {
+    color: white;
+}
+
+#mainNavbar .nav-link:hover {
+    color: #ACD6FF;
+}
+
+#mainNavbar .navbar-brand {
+    color: wheat;
+    font-size: 1.5rem;
+}
+
+.dropdown-menu {
+    border-radius: 1px;
+    background: #0755a8;
+}
+
+
+.dropdown-item {
+    color: #fff;
+}
+
+.dropdown-item:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+
+main {
+    background: center/cover url(cloud.png);
+    min-height: 100vh;
+}
+
+
+.panel {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    padding: 15px 25px;
+    width: 100%;
+    max-width: 2000px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    text-transform: uppercase;
+
+}
+
+.panel-items {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: none;
+    ;
+    padding: 25px 50px;
+}
+
+.panel-items:last-child {
+    border-right: none;
+    border-bottom: none;
+}
+
+.list-group-item {
+    background-color: rgba(255, 255, 255, 0);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.cite {
+    display: none;
+}
+
+.map {
+    display: none;
+}
+
+cite a {
+    font-size: 0.7rem;
+    color: white;
+    text-decoration: none;
+}
+
+cite a:hover {
+    text-decoration: underline;
+}
+
+.weatherBtn {
+    padding-bottom: 0.5rem;
+}
+
+.city-links {
+    padding-bottom: 3rem;
+}
+
+.weather-table {
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.weather-table th,
+.weather-table td {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: black;
+}
+
+
+
+@media (min-width: 991px) {
+    .panel {
+        flex-direction: row;
+    }
+
+    .panel-items {
+        border-bottom: none;
+        border-right: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 25px 50px;
+    }
+
+    .panel-item:last-child {
+        border-right: none;
+    }
+
+    .cite {
+        display: block;
+    }
+
+    .map {
+        display: block;
+    }
+
+    .weatherBtn,
+    .city-links {
+        display: none;
+    }
+
+}

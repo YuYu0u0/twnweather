@@ -1,0 +1,53 @@
+svg {
+    height: 100vh;
+}
+
+rect {
+    fill: transparent;
+}
+
+path {
+    stroke: white;
+    fill: #ACD6FF;
+    transition: 50ms;
+    cursor: pointer;
+}
+
+path:hover {
+    fill: #46A3FF;
+    transform: translate(-5px, -5px);
+}
+
+g {
+    stroke: white;
+    fill: #ACD6FF;
+    transition: 50ms;
+    cursor: pointer;
+}
+
+g:hover path {
+    fill: #46A3FF;
+    transform: translate(-5px, -5px);
+}
+
+
+
+.weatherIcon {
+    width: 3rem;
+    height: 3rem;
+    margin: 3rem;
+}
+
+.weatherIcon path {
+    fill: white;
+    stroke: black;
+
+    transform: none;
+
+}
+
+
+.bi-github {
+    height: 0%;
+    width: 1rem;
+}

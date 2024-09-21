@@ -2,28 +2,33 @@
 {% load static %}
 {% block title %}台灣氣象預報網{% endblock %}
 {% block content %}
-<div class="main-content__wrapper">
-    <h2>最近有感地震</h2>
-    {% if data %}
-    <table>
-        <tr>
-            <th>時間</th>
-            <th>地點</th>
-            <th>深度</th>
-            <th>地震規模</th>
-        </tr>
-        {% for report in data %}
-        <tr>
-            <td>{{ report.0 }}</td>
-            <td>{{ report.1 }}</td>
-            <td>{{ report.2 }}KM</td>
-            <td>{{ report.3 }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-
-    {% else %}
-    <h2>沒有資料</h2>
-    {% endif %}
+<div class="row panel justify-content-center">
+    <div class="col-8 justify-content-center">
+        <h2 class="text-center">最近有感地震</h2>
+        {% if data %}
+        <table class="table text-center weather-table">
+            <thead>
+                <tr>
+                    <th>時間</th>
+                    <th>地點</th>
+                    <th>深度</th>
+                    <th>地震規模</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for report in data %}
+                <tr>
+                    <td>{{ report.0 }}</td>
+                    <td>{{ report.1 }}</td>
+                    <td>{{ report.2 }}KM</td>
+                    <td>{{ report.3 }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <h2 class="text-center">沒有資料</h2>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}

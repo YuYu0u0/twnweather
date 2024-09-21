@@ -2,14 +2,53 @@
 {% load static %}
 {% block title %}台灣氣象預報網{% endblock %}
 {% block content %}
-<div class="main-content__wrapper">
-    <h2 class="main-content__title section__title">歡迎來到<br><span>台灣氣象預報網</span><br></h2>
-    <p class="main-content__text">提供最新的天氣預報，包括現在天氣、一周預報和地震資訊。</p>
-    <a href="{% url 'current_weather' %}" class="main-content__link-button link-button">今日天氣</a>
-    <div class="main-content__social">
-        <a href="https://github.com/YuYu0u0/twnweather">
-            <img class="social_link" src="{% static 'weather/images/github.png' %}" alt="GitHub">
-        </a>
+<div class="row panel">
+    <div class="col-lg-4 panel-items">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sun weatherIcon"
+            viewBox="0 0 16 16">
+            <path
+                d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708" />
+        </svg>
+        <h2 class="display-3"><b>目前天氣</b></h1>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item my-3">中央氣象署最新天氣觀測資料</li>
+                <li class="list-group-item ">點擊了解資訊</li>
+            </ul>
+            <a type="button" href="{% url 'current_weather' %}" class="btn btn-outline-primary btn-lg my-3">查看</a>
     </div>
+    <div class="col-lg-4 panel-items">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-cloud-sun weatherIcon" viewBox="0 0 16 16">
+            <path
+                d="M7 8a3.5 3.5 0 0 1 3.5 3.555.5.5 0 0 0 .624.492A1.503 1.503 0 0 1 13 13.5a1.5 1.5 0 0 1-1.5 1.5H3a2 2 0 1 1 .1-3.998.5.5 0 0 0 .51-.375A3.5 3.5 0 0 1 7 8m4.473 3a4.5 4.5 0 0 0-8.72-.99A3 3 0 0 0 3 16h8.5a2.5 2.5 0 0 0 0-5z" />
+            <path
+                d="M10.5 1.5a.5.5 0 0 0-1 0v1a.5.5 0 0 0 1 0zm3.743 1.964a.5.5 0 1 0-.707-.707l-.708.707a.5.5 0 0 0 .708.708zm-7.779-.707a.5.5 0 0 0-.707.707l.707.708a.5.5 0 1 0 .708-.708zm1.734 3.374a2 2 0 1 1 3.296 2.198q.3.423.516.898a3 3 0 1 0-4.84-3.225q.529.017 1.028.129m4.484 4.074c.6.215 1.125.59 1.522 1.072a.5.5 0 0 0 .039-.742l-.707-.707a.5.5 0 0 0-.854.377M14.5 6.5a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
+        </svg>
+        <h2 class="display-3"><b>一週預報</b></h1>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item my-3">全台一周天氣概況預報</li>
+                <li class="list-group-item">點擊了解資訊</li>
+            </ul>
+            <a type="button" href="{% url 'weekly_report' %}" class="btn btn-outline-primary btn-lg my-3">查看</a>
+    </div>
+    <div class="col-lg-4 panel-items">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-activity weatherIcon" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2" />
+        </svg>
+        <h2 class="display-3"><b>地震資訊</b></h1>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item my-3">最近地震位置震度資料</li>
+                <li class="list-group-item">點擊了解資訊</li>
+            </ul>
+            <a type="button" href="{% url 'recent_earthquake' %}" class="btn btn-outline-primary btn-lg my-3">查看</a>
+    </div>
+</div>
+<div class="cite position-absolute bottom-0 end-0 m-3">
+    <cite>
+        <a href="https://pixabay.com/illustrations/ai-generated-clouds-blue-sky-8975558/"><i>Author:Geralt,Posted
+                in pixabay</i></a>
+    </cite>
 </div>
 {% endblock %}
