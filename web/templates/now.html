@@ -594,17 +594,17 @@ L192.415,50.621z" />
     <div class="col-lg-6 d-flex align-items-center justify-content-center">
         <div class="row">
             {% if data %}
-            <h2 class="display-3"><b>{{ city }}</b></h1>
+            <h2 class="display-3"><b>{{ city|default:"請選擇縣市" }}</b></h1>
                 {% for weather_data in data %}
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item my-3">
                         <h3>{{ weather_data.weather }}</h3>
                     </li>
                     <li class="list-group-item my-3">
-                        <h3>溫度</h3> {{ weather_data.temperature }}
+                        <h3>溫度</h3> {{ weather_data.temperature|default:"--" }}°C
                     </li>
                     <li class="list-group-item my-3">
-                        <h3>濕度</h3> {{ weather_data.humid }}%
+                        <h3>濕度</h3> {{ weather_data.humid|default:"--" }}%
                     </li>
                 </ul>
                 {% endfor %}
