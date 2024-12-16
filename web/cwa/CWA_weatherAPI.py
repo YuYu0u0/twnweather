@@ -21,7 +21,7 @@ class WeatherAPI:
         if location is not None:
             if "台" in location:
                 location = location.replace("台", "臺")
-            city = '&locationName='+quote(location, encoding="utf-8")
+            city = '&LocationName='+quote(location, encoding="utf-8")
 
             url = f"{self.base_url}{dataset_id}?Authorization={self.api_key}&format=JSON{city}"
         elif dataset_id == 'E-A0015-001':
@@ -95,8 +95,14 @@ if __name__ == "__main__":
     print(api_key)
     weatherAPI = WeatherAPI(api_key)
     # data = weatherAPI.get_earthquake_data()
-    # data2 = weatherAPI.get_36hr_weather_forecast_data("台北市")
+    data2 = weatherAPI.get_36hr_weather_forecast_data("台中市")
     # data3 = weatherAPI.get_typhoon_warning()
     # data4 = weatherAPI.get_weather_warning()
-    data5 = weatherAPI.get_weekly_forcast_weather_data("台北市")
-    print(data5["records"]["Locations"][0]["Location"][0]["WeatherElement"])
+    data = weatherAPI.get_weekly_forcast_weather_data("台北市")
+    weatherdatas = data["records"]["Locations"][0]["Location"][0]["WeatherElement"]
+
+    PoP12h = weatherdatas[0]["Time"]
+    Wx = weatherdatas[6]["Time"]
+    minT = weatherdatas[8]["Time"]
+    maxT = weatherdatas[12]["Time"]
+    print(data2)
