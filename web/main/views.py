@@ -44,7 +44,7 @@ def weekly_report(request):
             start_time = entry['StartTime']
             date = start_time.split(' ')[0]
             period = get_period(start_time)
-            grouped_data[date][period][data_type] = entry['ElementValue'][0]["Value"]
+            grouped_data[date][period][data_type] = entry['ElementValue'][0]
 
     grouped_data = dict(grouped_data)
     request.session['last_city'] = city
