@@ -41,10 +41,10 @@ def weekly_report(request):
 
     for data_type, weather_data in zip(['minT', 'maxT', 'Wx', 'PoP12h'], [minT, maxT, Wx, PoP12h]):
         for entry in weather_data:
-            start_time = entry['startTime']
+            start_time = entry['StartTime']
             date = start_time.split(' ')[0]
             period = get_period(start_time)
-            grouped_data[date][period][data_type] = entry['elementValue'][0]["value"]
+            grouped_data[date][period][data_type] = entry['ElementValue'][0]["value"]
 
     grouped_data = dict(grouped_data)
     request.session['last_city'] = city
