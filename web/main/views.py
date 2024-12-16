@@ -31,10 +31,10 @@ def weekly_report(request):
     data = weather_api.get_weekly_forcast_weather_data(city)
     weatherdatas = data["records"]["Locations"][0]["Location"][0]["WeatherElement"]
 
-    PoP12h = weatherdatas[0]["time"]
-    Wx = weatherdatas[6]["time"]
-    minT = weatherdatas[8]["time"]
-    maxT = weatherdatas[12]["time"]
+    PoP12h = weatherdatas[0]["Time"]
+    Wx = weatherdatas[6]["Time"]
+    minT = weatherdatas[8]["Time"]
+    maxT = weatherdatas[12]["Time"]
 
     grouped_data = defaultdict(lambda: {'day': {'minT': '', 'maxT': '', 'weather': '', 'PoP12h': ''}, 'night': {
         'minT': '', 'maxT': '', 'weather': '', 'PoP12h': ''}})
