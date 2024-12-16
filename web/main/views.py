@@ -31,10 +31,10 @@ def weekly_report(request):
     data = weather_api.get_weekly_forcast_weather_data(city)
     weatherdatas = data["records"]["Locations"][0]["Location"][0]["WeatherElement"]
 
-    PoP12h = weatherdatas[0]["Time"]
-    Wx = weatherdatas[6]["Time"]
-    minT = weatherdatas[8]["Time"]
-    maxT = weatherdatas[12]["Time"]
+    PoP12h = weatherdatas[11]["Time"]
+    Wx = weatherdatas[12]["Time"]
+    minT = weatherdatas[2]["Time"]
+    maxT = weatherdatas[1]["Time"]
 
     grouped_data = defaultdict(lambda: {'day': {'minT': '', 'maxT': '', 'weather': '', 'PoP12h': ''}, 'night': {
         'minT': '', 'maxT': '', 'weather': '', 'PoP12h': ''}})
@@ -42,9 +42,21 @@ def weekly_report(request):
     for data_type, weather_data in zip(['minT', 'maxT', 'Wx', 'PoP12h'], [minT, maxT, Wx, PoP12h]):
         for entry in weather_data:
             start_time = entry['StartTime']
-            date = start_time.split(' ')[0]
             period = get_period(start_time)
-            grouped_data[date][period][data_type] = entry['ElementValue'][0]
+
+            value=""
+            if data_type == 'minT':
+                value = entry['ElementValue'][0].get('MinTemperature', '')
+            elif data_type == 'maxT':
+                value = entry['ElementValue'][0].get('MaxTemperature', '')
+            elif data_type == 'Wx':
+                value = entry['ElementValue'][0].get('Weather', '')
+            elif data_type == 'PoP12h':
+                value = entry['ElementValue'][0].get('ProbabilityOfPrecipitation', '')
+
+
+            grouped_data[start_time][period][data_type] = value
+
 
     grouped_data = dict(grouped_data)
     request.session['last_city'] = city
