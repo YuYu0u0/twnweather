@@ -98,6 +98,5 @@ if __name__ == "__main__":
     # data2 = weatherAPI.get_36hr_weather_forecast_data("台北市")
     # data3 = weatherAPI.get_typhoon_warning()
     # data4 = weatherAPI.get_weather_warning()
-    data5 = weatherAPI.get_instant_weather_data()
-    # weatherAPI.save_data(data2, category[1])
-    print(data5)
+    data5 = weatherAPI.get_weekly_forcast_weather_data("台北市")
+    print(data5["records"]["Locations"][0]["Location"][0]["WeatherElement"])
