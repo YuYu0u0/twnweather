@@ -43,6 +43,7 @@ def weekly_report(request):
         for entry in weather_data:
             start_time = entry['StartTime']
             period = get_period(start_time)
+            dates = start_time.split('T')[0]
 
             value=""
             if data_type == 'minT':
@@ -55,7 +56,7 @@ def weekly_report(request):
                 value = entry['ElementValue'][0].get('ProbabilityOfPrecipitation', '')
 
 
-            grouped_data[start_time][period][data_type] = value
+            grouped_data[dates][period][data_type] = value
 
 
     grouped_data = dict(grouped_data)
