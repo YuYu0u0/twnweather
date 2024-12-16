@@ -45,6 +45,7 @@ main {
 
 
 .panel {
+    margin-top: 5rem;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 10px;
     padding: 15px 25px;
