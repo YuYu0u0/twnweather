@@ -29,7 +29,7 @@ def weekly_report(request):
 
     weather_api = WeatherAPI(api_key)
     data = weather_api.get_weekly_forcast_weather_data(city)
-    weatherdatas = data["records"]["Locations"][0]["Location"][0]["WeatherElement"]
+    weatherdatas = data["records"]["locations"][0]["weatherElement"]
 
     PoP12h = weatherdatas[11]["Time"]
     Wx = weatherdatas[12]["Time"]
