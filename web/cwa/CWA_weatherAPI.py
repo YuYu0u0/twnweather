@@ -99,7 +99,7 @@ if __name__ == "__main__":
     # data3 = weatherAPI.get_typhoon_warning()
     # data4 = weatherAPI.get_weather_warning()
     data = weatherAPI.get_weekly_forcast_weather_data("台北市")
-    weatherdatas = data["records"]["Locations"][0]["Location"][0]["WeatherElement"]
+    weatherdatas = data["records"]["locations"][0]["weatherElement"]
 
     PoP12h = weatherdatas[0]["Time"]
     Wx = weatherdatas[6]["Time"]
