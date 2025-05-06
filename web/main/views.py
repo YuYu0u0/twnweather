@@ -67,15 +67,15 @@ def weekly_report(request):
 def current_weather(request):
     weather_api = WeatherAPI(api_key)
     data = weather_api.get_instant_weather_data()
-    data = data["records"]['Station']
+    data = data['records']['Station']
 
     current = dict()
     for v in data:
         cities = v['GeoInfo']['CountyName']
-        weather = v["WeatherElement"]['Weather']
-        temperature = v["WeatherElement"]['AirTemperature']
-        humid = v["WeatherElement"]['RelativeHumidity']
-        if v["WeatherElement"]['Weather'] == '-99':
+        weather = v["weatherElement"]['Weather']
+        temperature = v["weatherElement"]['AirTemperature']
+        humid = v["weatherElement"]['RelativeHumidity']
+        if v["weatherElement"]['Weather'] == '-99':
             weather = '-'
 
         # 如果 city 不在 current 字典中，則初始化為一個空列表
@@ -115,7 +115,7 @@ def current_weather(request):
 def recent_earthquake(request):
     weatherAPI = WeatherAPI(api_key)
     data = weatherAPI.get_earthquake_data()
-    reports = data["records"]["Earthquake"]
+    reports = data['records']['earthquake']
     earthquake_info = list()
     for report in reports:
         report_time = datetime.strptime(
