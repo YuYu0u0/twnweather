@@ -115,7 +115,7 @@ def current_weather(request):
 def recent_earthquake(request):
     weatherAPI = WeatherAPI(api_key)
     data = weatherAPI.get_earthquake_data()
-    reports = data['records']['earthquake']
+    reports = data['records']
     earthquake_info = list()
     for report in reports:
         report_time = datetime.strptime(
