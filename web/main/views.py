@@ -29,7 +29,7 @@ def weekly_report(request):
 
     weather_api = WeatherAPI(api_key)
     data = weather_api.get_weekly_forcast_weather_data(city)
-    weatherdatas = data["records"]["locations"][0]["weatherElement"]
+    weatherdatas = data["records"]["Locations"][0]["Location"][0]["WeatherElement"]
 
     PoP12h = weatherdatas[11]["Time"]
     Wx = weatherdatas[12]["Time"]
@@ -45,7 +45,7 @@ def weekly_report(request):
             period = get_period(start_time)
             dates = start_time.split('T')[0]
 
-            value=""
+            value = ""
             if data_type == 'minT':
                 value = entry['ElementValue'][0].get('MinTemperature', '')
             elif data_type == 'maxT':
@@ -53,11 +53,10 @@ def weekly_report(request):
             elif data_type == 'Wx':
                 value = entry['ElementValue'][0].get('Weather', '')
             elif data_type == 'PoP12h':
-                value = entry['ElementValue'][0].get('ProbabilityOfPrecipitation', '')
-
+                value = entry['ElementValue'][0].get(
+                    'ProbabilityOfPrecipitation', '')
 
             grouped_data[dates][period][data_type] = value
-
 
     grouped_data = dict(grouped_data)
     request.session['last_city'] = city
@@ -72,10 +71,10 @@ def current_weather(request):
     current = dict()
     for v in data:
         cities = v['GeoInfo']['CountyName']
-        weather = v["weatherElement"]['Weather']
-        temperature = v["weatherElement"]['AirTemperature']
-        humid = v["weatherElement"]['RelativeHumidity']
-        if v["weatherElement"]['Weather'] == '-99':
+        weather = v["WeatherElement"]['Weather']
+        temperature = v["WeatherElement"]['AirTemperature']
+        humid = v["WeatherElement"]['RelativeHumidity']
+        if v["WeatherElement"]['Weather'] == '-99':
             weather = '-'
 
         # 如果 city 不在 current 字典中，則初始化為一個空列表
@@ -115,7 +114,7 @@ def current_weather(request):
 def recent_earthquake(request):
     weatherAPI = WeatherAPI(api_key)
     data = weatherAPI.get_earthquake_data()
-    reports = data['records']
+    reports = data['records']['Earthquake']
     earthquake_info = list()
     for report in reports:
         report_time = datetime.strptime(
