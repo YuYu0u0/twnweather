@@ -125,3 +125,16 @@ def recent_earthquake(request):
         magnitude = report["EarthquakeInfo"]["EarthquakeMagnitude"]["MagnitudeValue"]
         earthquake_info.append([formatted_time, location, dept, magnitude])
     return render(request, "earthquake.html", {"data": earthquake_info[:5]})
+
+
+import requests
+
+def check_cwb(request):
+    try:
+        res = requests.get(
+            "https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-D0047-091?Authorization=" + API_KEY + "&LocationName=臺中市",
+            timeout=10
+        )
+        return HttpResponse(f"status: {res.status_code}, body: {res.text[:200]}")
+    except Exception as e:
+        return HttpResponse(f"Error: {type(e).__name__}: {e}")
