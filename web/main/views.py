@@ -128,11 +128,14 @@ def recent_earthquake(request):
 
 
 import requests
-
+from dotenv import load_dotenv
+load_dotenv()
+from django.http import HttpResponse
+api_key = os.getenv("api_key")
 def check_cwb(request):
     try:
         res = requests.get(
-            "https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-D0047-091?Authorization=" + API_KEY + "&LocationName=臺中市",
+            "https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-D0047-091?Authorization=" + api_key + "&LocationName=臺中市",
             timeout=10
         )
         return HttpResponse(f"status: {res.status_code}, body: {res.text[:200]}")
